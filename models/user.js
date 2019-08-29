@@ -67,6 +67,12 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
+  user.prototype.toJSON = function(){
+    var user = this.get();
+    delete user.password;
+    return user;
+  }
+
   // Custom function: validPassword
   // This will check an instance of the model (specific user) against a typed in password
   // Use bcrypt to compare hashes
